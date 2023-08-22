@@ -1,0 +1,48 @@
+body{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(84,9,121,1) 50%, rgba(0,212,255,1) 100%);
+}
+h1{
+    text-align: center;
+    color: blueviolet;
+}
+
+.mainDiv{
+    background-color: aliceblue;
+    background-position: center;
+    margin: 20vh auto 0 auto;
+    border-radius: 5px ;
+    width: 400px;
+    padding: 30px ;
+}
+.textBoxDiv{
+ display: flex;
+ flex-direction: column;
+ padding-bottom: 15px;
+}
+.textBoxDiv input{
+    border:ipx solid aquamarine;
+}
+.textBoxDiv input:focus{
+    outline: 0;
+}
+.button{
+    cursor: pointer;
+    width: 100%;
+    background-color: blueviolet;
+    color:aliceblue;
+    padding: 5px;
+    border-color: blueviolet;
+    border-radius:5px;
+
+}
+.textBoxDiv .error{
+    color: red;
+    padding: 5px;
+}
+.textBoxDiv.success input{
+border-color:aquamarine
+}
+.textBoxDiv.error input{
+   border-color:red
+    }

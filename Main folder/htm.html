@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Code Editor</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism.css" rel="stylesheet" />
+  <style>
+    /* Set the size and style for the editor container */
+    
+    .header{
+       color: white;
+       display: flex;
+        justify-content: space-between;
+        align-items: center; /* Center vertically */
+        width: 100%;
+        height: 10vh;
+        padding:0px 10px 0px 10px;
+        border-radius: 10px;
+        background: #252525;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+button{
+    border-radius: 10px;
+    background: #383838;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    border: none;
+
+}
+    #editor-container {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+
+    /* Set the font and size for the code inside the editor */
+    #code-input {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 10px;
+      outline: none;
+      color: aliceblue;
+      background-color: #383838;
+    }
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+  </style>
+</head>
+<body>
+  <header class="header">SANJU'S CODE EDITOR
+    <div></div>
+    <label class="switch">
+      <input type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+    <div></div>
+    <label for="program">Choose a language:</label>
+  <select name="language" id="language">
+    <option value="c">c</option>
+    <option value="c++">c++</option>
+    <option value="java">java</option>
+    <option value="python">python</option>
+  </select>
+    <div></div>
+    <div></div>
+    <button style="padding: 10px 15px ; color: yellowgreen ;">Save</button>
+    <div class="btn">
+      <button style=" color:lightskyblue ;">SIGN IN</button>
+      <button style=" color: lightcoral ;">SIGN IN</button>
+ </div>
+  </header>
+  <div id="editor-container">
+    <pre id="code-input" contenteditable="true" placeholder="Enter your code here..."></pre>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.js"></script>
+  <script>
+    // Initialize the editor and apply syntax highlighting
+    function initializeEditor() {
+      const codeInput = document.getElementById("code-input");
+
+      // When the user types or changes the code, update the highlighted code
+      codeInput.addEventListener("input", () => {
+        const code = codeInput.value;
+        const highlightedCode = Prism.highlight(code, Prism.languages.javascript, "javascript");
+        codeInput.innerHTML = highlightedCode;
+      });
+
+      // Initial highlighting
+      const initialCode = codeInput.value;
+      const initialHighlightedCode = Prism.highlight(
+        initialCode,
+        Prism.languages.javascript,
+        "javascript"
+      );
+      codeInput.innerHTML = initialHighlightedCode;
+    }
+
+    initializeEditor();
+  </script>
+</body>
+</html>

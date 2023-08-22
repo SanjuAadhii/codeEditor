@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Editor with Live Highlighting</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+
+    
+  </head>
+  <body>
+    
+    
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/css/css.min.js"></script>
+  
+  <!-- CodeMirror core auto close tags in html files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/edit/closetag.min.js"></script>
+  <script src="server.js"></script>
+    
+  <header class="header" >SANJU'S CODE EDITOR
+    <div></div>
+    
+    <div></div>
+    <label class="switch" >
+      <input type="checkbox" id="myCheckbox"  >
+      <!-- <button onclick="toggle()"></button> -->
+      <span class="slider round"></span>
+    </label>
+    <div class="hide" style="display: none;">
+    <label for="program">Choose a language:</label>
+    <select id="lang">
+      <option>Bash</option>
+            <option>C#</option>
+            <option selected>C++</option>
+            <option>C</option>
+            <option>Java</option>
+            <option>Python</option>
+            <option>Ruby</option>
+    </select>
+  </div>
+    <div></div>
+    <button style="padding: 10px 15px ; color: yellowgreen ;" type="button" onclick="saveFile()">Save</button>
+    <div class="btn">
+      <button type="button" id="logIn" style=" color:lightskyblue ;" onclick="logIN()">SIGN IN</button>
+      <button type="button" id="signUp" style=" color: lightcoral ;" onclick="regitrationForm()">SIGN UP</button>
+ </div>
+  </header>
+ 
+    <div class="codeArea">
+      <div class="textbox" id="show" style="display: flex;">
+        <div class="code-div" >
+          <label>HTML</label>
+          <pre id="code-html" class="clean" contenteditable="true"    onkeyup="run()"></pre>
+          <button type="button" class="clear" onclick="clearContent()">c</button>
+        </div>
+        <div class="code-div" >
+          <label>CSS</label>
+          <pre id="code-css" class="clean" contenteditable="true" onkeyup="run()"></pre> 
+          <button type="button" class="clear" onclick="clearContent()">c</button>
+        </div>
+        <div class="code-div" >
+          <label>JAVASCRIPT</label>
+          <pre id="code-js" class="clean"  contenteditable="true" onkeyup="run()"></pre>
+          <button type="button" class="clear" onclick="clearContent 
+          ()">c</button> 
+        </div>
+      </div>
+      <div class="hide"  style="display: none;"><html>
+        <head>
+         
+          <link rel="stylesheet" href="../codemirror/codemirror-5.65.14/lib/codemirror.css">
+          <link rel="stylesheet" href="../codemirror/codemirror-5.65.14/theme/darcula.css">
+         
+          
+          <style>
+            /* Set the size and style for the editor container */
+            
+            .header{
+               color: white;
+               display: flex;
+                justify-content: space-between;
+                align-items: center; /* Center vertically */
+                width: 100%;
+                height: 10vh;
+                padding:0px 10px 0px 10px;
+                border-radius: 10px;
+                background: #252525;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+        
+        button{
+            border-radius: 10px;
+            background: #383838;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            padding: 10px;
+            border: none;
+        
+        }
+            #editor-container {
+              display: inline-flex;
+              width: 100%;
+              height: 500px;
+              border: 1px solid #ccc;
+            }
+        
+            /* Set the font and size for the code inside the editor */
+            #source {
+              font-family: "Courier New", Courier, monospace;
+              font-size: 14px;
+              width: 100%;
+              height: 100%;
+              border: none;
+              padding: 10px;
+              outline: none;
+              color: aliceblue;
+              background-color: #383838;
+            }
+           
+          </style>
+        </head>
+        <body>
+          
+          <script src="../codemirror/codemirror-5.65.14/lib/codemirror.js"></script>
+        
+          <script src="../codemirror/codemirror-5.65.14/mode/clike/clike.js"></script>
+
+          <button type="button" id="run" style=" background-color: lightgreen;display:flex;justify-items: right; margin: 15px;" onclick="compileP()">
+            <a class="des" style="text-align:center;">
+            Run</a></button>
+          <div id="editor-container">
+           
+            
+            <textarea id="source" class="txtflex"  style="width: calc(50% - 8px); height: 50%; resize: vertical"></textarea>
+             <div style="padding: 5px;"> 
+           <h3 style="text-align: center; ">INPUT</h3>      
+           <textarea id="input" class="txtflex" style="margin: 20px; width: 100%;height:50%; background-color: #383838; color: aliceblue;resize: none;"> </textarea>
+          </div> 
+          </div>
+            
+        
+          
+          <script>
+            // Check if CodeMirror is available
+            if (typeof CodeMirror !== 'undefined') {
+              // Initialize the editor
+              var editor = CodeMirror.fromTextArea(document.getElementById("source"), {
+                mode: "text/x-csrc",
+                lineNumbers: true,
+                theme: "darcula"
+              });
+              // Set editor width
+              var width = window.innerWidth;
+              editor.setSize(0.7 * width, "500px");
+            }
+          </script>
+          
+        </body>
+      </html></div>
+      </div>
+
+
+      <!-- output -->
+      <div class="output">
+        <label>Output</label>
+        <textarea readonly id="output" style="color: white;" sandbox="allow-same-orgiin ;resize= none"></textarea>
+      </div>
+
+   
+      
+      <!-- <iframe src="htm.html" style="width:max-content;" frameborder="none"></iframe> -->
+
+
+<!--Registration Page -->
+<script>
+  // script.js (first folder)
+document.addEventListener("DOMContentLoaded", function() {
+  const redirectButton = document.getElementById("signUp");
+  redirectButton.addEventListener("click", function() {
+    window.location.href = "../registerPage/html.html"; // Adjust the path accordingly
+  });
+});
+
+</script>
+
+<!-- Log In Page -->
+<script>
+  
+document.addEventListener("DOMContentLoaded", function() {
+  const redirectButton = document.getElementById("logIn");
+  redirectButton.addEventListener("click", function() {
+    window.location.href = "../logIn/index.html"; // Adjust the path accordingly
+  });
+});
+
+</script>
+
+
+<script src="save.js"></script>
+<script src="script.js"></script>
+
+
+<!-- Redirect to problem solving page -->
+<script>
+  var checkbox = document.getElementById("myCheckbox");
+  var hideElement = document.querySelectorAll(".hide")
+  var divElement = document.getElementById("show");
+  console.log(divElement)
+  console.log(hideElement)
+  console.log("hi")
+checkbox.addEventListener("change", function() {
+  if (this.checked) {
+    // checkbox.value="defaultValue";
+    // console.log("came")
+    divElement.style.display = "none"; 
+    
+    console.log(divElement)
+ 
+    for(let i=0;i<=hideElement.length;i++){
+      hideElement[i].style.display= "block"; 
+    } 
+    console.log(hideElement)
+    
+    
+ 
+  }
+    else {
+      divElement.style.display = "flex"; 
+      for(let i=0;i<=hideElement.length;i++){
+      hideElement[i].style.display= "none"; 
+    } 
+      
+    
+   
+    // Show the div
+    
+  }
+ });
+
+//  document.addEventListener("DOMContentLoaded", function() {
+//   var checkbox = document.getElementById("myCheckbox");
+ 
+//   checkbox.addEventListener("change", function() {
+//     window.location.href = "../problemSolving/index.html"; // Adjust the path accordingly
+//   });
+
+// });
+</script>
+
+<!-- clear content -->
+<!-- <script>
+  
+  function clearContent(){
+   
+    var button = event.target; 
+    button.previousElementSibling.textContent=" " ; 
+  
+  }
+</script> -->
+
+
+  </body>
+</html>

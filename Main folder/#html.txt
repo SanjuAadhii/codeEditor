@@ -1,0 +1,149 @@
+#html
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Editor with Live Highlighting</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+    
+
+    
+    
+  </head>
+  <body>
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/css/css.min.js"></script>
+  
+  <!-- CodeMirror core auto close tags in html files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/edit/closetag.min.js"></script>
+
+  
+    <div class="codeArea">
+      <div class="textbox">
+        <div>
+          <label>HTML</label>
+          <pre id="code-html" contenteditable="true"    onkeyup="run()"></pre>
+        </div>
+        <div>
+          <label>CSS</label>
+          <pre id="code-css" contenteditable="true"  onkeyup="run()"></pre> 
+        </div>
+        <div>
+          <label>JAVASCRIPT</label>
+          <pre id="code-js"  contenteditable="true" onkeyup="run()"></pre> 
+        </div>
+      </div>
+      <div class="output">
+        <label>Output</label>
+        <iframe id="output" sandbox="allow-same-origin"></iframe>
+      </div>
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/go.min.js"></script> -->
+  
+<script>
+
+var htmlValue=CodeMirror(document.getElementById('code-html'), {
+  lineNumbers: true,
+  value:document.getElementById("code-html").textContent ,
+  tabSize: 2,
+  mode: "text/html",
+  autoCloseTags: true, 
+   theme: 'monokai'
+});
+var cssValue=CodeMirror(document.getElementById('code-css'), {
+  lineNumbers: true,
+  value:document.getElementById("code-css").textContent,
+  tabSize: 2,
+  mode:'css',
+   theme: 'monokai'
+});
+var jsValue=CodeMirror(document.getElementById('code-js'), {
+  lineNumbers: true,
+  value:document.getElementById("code-js").textContent ,
+  tabSize: 2,
+   mode: 'javascript',
+     theme: 'monokai'
+});
+console.log(htmlValue);
+console.log(cssValue);
+  function run() {
+    var htmlCode=htmlValue.getValue();			
+			let cssCode="<style>"+cssValue.getValue()+"</style>";
+			let scriptCode=jsValue.getValue();
+			let output =document.getElementById("output");
+			output.contentDocument.body.innerHTML=htmlCode+cssCode;
+			output.contentWindow.eval(scriptCode);
+}
+
+</script>
+
+
+
+  </body>
+</html>
+
+#css
+body{
+background-color:#141414;
+}
+.codArea{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.textbox{
+    display:flex;
+    justify-content: space-between;
+    
+    width: 100%;
+    height: 10%;
+  
+  
+}
+label{
+    color:white;
+}
+
+
+#code-html ,#code-css, #code-js{
+    cursor: pointer;
+    width: 50vh;
+    height: 60vh;
+    border: 0 ;
+    padding: 15px;
+    overflow: hidden;
+    line-height: 1;
+    color: aliceblue;
+    margin: 15px;
+    background-color: #282828;
+}
+
+
+#output{
+    width: 100%;
+    margin: 15px;
+    padding: 15px;
+    background-color: #282828;
+    border: none;
+}

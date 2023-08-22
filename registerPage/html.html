@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Registration Form</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styleSheet.css">
+        <script src="FormValidation.js" defer ></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="mainDiv">
+            <h1>Register</h1>
+            <form action="" id="form">
+            <div class="textBoxDiv">
+            <label>username</label>
+            <input type="text" id="username" class="inputBox" name="username">
+            <div class="error"></div>
+            </div>
+            <div class="textBoxDiv">
+                <label>Email</label>
+                <input type="email" id="email"   class="inputBox" name="Email">
+                <div class="error"></div>
+                </div>
+                <div class="textBoxDiv">
+                    <label>Password</label>
+                    <input type="password" id="password" class="inputBox" name="password">
+                    <div class="error"></div>
+                    </div>
+                    <div class="textBoxDiv">
+                        <label>confirm Password</label>
+                        <input type="password" id="cpassword" class="inputBox" name="cpassword">
+                        <div class="error"></div>
+                        </div>
+                    <button type="submit" class="button">Register</button>
+                </form>          
+        </div>
+        
+    </body>
+</html>
